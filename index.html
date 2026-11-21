@@ -3,154 +3,131 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Premium Videos</title>
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:#0b0b0f;
-  color:white;
-  font-family:Arial,sans-serif;
-}
-header{
-  padding:22px 16px;
-  background:#15151d;
-  border-bottom:1px solid #292936;
-  text-align:center;
-}
-header h1{margin:0;color:#e8b85c;font-size:25px}
-header p{color:#aaa;font-size:13px;margin:8px 0 0}
-.container{max-width:950px;margin:auto;padding:20px 15px}
-.search{
-  width:100%;padding:14px;
-  border:1px solid #393946;
-  border-radius:9px;background:#191923;
-  color:white;font-size:15px;margin-bottom:22px;
-}
-.section-title{font-size:21px;margin-bottom:17px}
-.videos{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
-  gap:16px;
-}
-.card{
-  background:#191923;border:1px solid #30303c;
-  border-radius:12px;overflow:hidden;
-}
-.thumbnail{
-  height:125px;
-  background:linear-gradient(135deg,#30213d,#704c62,#171725);
-  display:flex;align-items:center;justify-content:center;
-  font-size:38px;
-}
-.info{padding:13px}
-.info h3{font-size:15px;margin:0 0 9px}
-.price{color:#e8b85c;font-weight:bold;margin-bottom:12px}
-.buy{
-  display:block;width:100%;padding:11px;
-  background:#d91e58;color:white;
-  border:0;border-radius:7px;
-  font-weight:bold;cursor:pointer;
-}
-.buy:hover{background:#b91448}
-.note{
-  color:#aaa;font-size:12px;
-  text-align:center;margin-top:25px;line-height:1.7;
-}
-footer{
-  background:#15151d;text-align:center;
-  padding:22px;color:#888;font-size:12px;margin-top:35px;
-}
+body{margin:0;background:#0b0b0f;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:30px 15px;background:#15151d}
+h1{color:#f5c542;margin:0}
+main{max-width:650px;margin:auto;padding:20px}
+h2{text-align:center}
+.videos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card,.payment{background:#191923;padding:18px;border-radius:12px;text-align:center}
+.card h3{margin:8px 0}
+.price{color:#f5c542;font-size:22px;margin:12px}
+button{background:#e8b923;color:#111;border:0;padding:12px 18px;border-radius:7px;font-weight:bold;cursor:pointer}
+.payment{margin-top:25px;text-align:left}
+.payment h2{text-align:center}
+.number{text-align:center;font-size:23px;color:#f5c542;font-weight:bold}
+label{display:block;margin:14px 0 6px}
+input{width:100%;padding:13px;border-radius:7px;border:1px solid #555;background:#101018;color:white}
+.note{color:#ccc;font-size:14px;line-height:1.6}
+#status{margin-top:15px;text-align:center}
+footer{text-align:center;color:#999;padding:25px;font-size:13px}
+@media(max-width:400px){.videos{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <header>
-  <h1>PREMIUM VIDEOS</h1>
-  <p>Exclusive Video Collection</p>
+<h1>PREMIUM VIDEOS</h1>
+<p>Exclusive Video Collection</p>
 </header>
 
-<main class="container">
-  <input class="search" id="search"
-  type="search" placeholder="ভিডিও খুঁজুন...">
+<main>
+<h2>আমাদের ভিডিও কালেকশন</h2>
+<div class="videos">
+<div class="card">
+<h3>Premium Video 01</h3>
+<div class="price">৳ ২০</div>
+<button onclick="chooseVideo('Premium Video 01',20)">বিকাশে কিনুন</button>
+</div>
+<div class="card">
+<h3>Premium Video 02</h3>
+<div class="price">৳ ৩০</div>
+<button onclick="chooseVideo('Premium Video 02',30)">বিকাশে কিনুন</button>
+</div>
+<div class="card">
+<h3>Premium Video 03</h3>
+<div class="price">৳ ৫০</div>
+<button onclick="chooseVideo('Premium Video 03',50)">বিকাশে কিনুন</button>
+</div>
+<div class="card">
+<h3>Premium Video 04</h3>
+<div class="price">৳ ১০০</div>
+<button onclick="chooseVideo('Premium Video 04',100)">বিকাশে কিনুন</button>
+</div>
+</div>
 
-  <h2 class="section-title">আমাদের ভিডিও কালেকশন</h2>
+<section class="payment" id="payment">
+<h2>পেমেন্ট তথ্য জমা দিন</h2>
+<p class="note">নির্বাচিত ভিডিও:</p>
+<p id="selected" style="text-align:center;font-weight:bold">আগে একটি ভিডিও নির্বাচন করুন</p>
 
-  <div class="videos" id="videos">
+<p class="note">নিচের বিকাশ নম্বরে Send Money করুন:</p>
+<div class="number">01845342509</div>
+<p class="note">পেমেন্ট করার পর নিচের তথ্য পূরণ করে জমা দিন।</p>
 
-    <div class="card">
-      <div class="thumbnail">▶</div>
-      <div class="info">
-        <h3>Premium Video 01</h3>
-        <div class="price">৳ ২০</div>
-        <button class="buy" onclick="buyVideo('Premium Video 01',20)">
-          বিকাশে কিনুন
-        </button>
-      </div>
-    </div>
+<form id="orderForm">
+<input type="hidden" id="video" name="video">
+<input type="hidden" id="price" name="price">
 
-    <div class="card">
-      <div class="thumbnail">▶</div>
-      <div class="info">
-        <h3>Premium Video 02</h3>
-        <div class="price">৳ ৩০</div>
-        <button class="buy" onclick="buyVideo('Premium Video 02',30)">
-          বিকাশে কিনুন
-        </button>
-      </div>
-    </div>
+<label>আপনার বিকাশ নম্বর</label>
+<input id="phone" type="tel" placeholder="01XXXXXXXXX" required>
 
-    <div class="card">
-      <div class="thumbnail">▶</div>
-      <div class="info">
-        <h3>Premium Video 03</h3>
-        <div class="price">৳ ৫০</div>
-        <button class="buy" onclick="buyVideo('Premium Video 03',50)">
-          বিকাশে কিনুন
-        </button>
-      </div>
-    </div>
+<label>Transaction ID (TrxID)</label>
+<input id="trxid" type="text" placeholder="আপনার TrxID লিখুন" required>
 
-    <div class="card">
-      <div class="thumbnail">▶</div>
-      <div class="info">
-        <h3>Premium Video 04</h3>
-        <div class="price">৳ ১০০</div>
-        <button class="buy" onclick="buyVideo('Premium Video 04',100)">
-          বিকাশে কিনুন
-        </button>
-      </div>
-    </div>
-
-  </div>
-
-  <p class="note">
-    পেমেন্ট ও ভিডিও দেখার সুবিধা শিগগিরই চালু হবে।<br>
-    © 2026 Premium Videos. All Rights Reserved.
-  </p>
+<button type="submit" style="width:100%;margin-top:20px">অর্ডার জমা দিন</button>
+</form>
+<p id="status"></p>
+</section>
 </main>
 
 <footer>
-  PREMIUM VIDEOS | Your Premium Entertainment Platform
+© 2026 Premium Videos. All Rights Reserved.
 </footer>
 
 <script>
-function buyVideo(name,price){
-  alert(
-    name+" এর মূল্য ৳"+price+
-    "\n\nবিকাশের স্বয়ংক্রিয় পেমেন্ট ব্যবস্থা এখনো সংযুক্ত করা হয়নি।"
-  );
+function chooseVideo(name, amount){
+document.getElementById('video').value=name;
+document.getElementById('price').value=amount;
+document.getElementById('selected').textContent=name+' — ৳ '+amount;
+document.getElementById('payment').scrollIntoView({behavior:'smooth'});
 }
 
-document.getElementById("search").addEventListener("input",function(){
-  let value=this.value.toLowerCase();
-  document.querySelectorAll(".card").forEach(function(card){
-    card.style.display=card.innerText.toLowerCase().includes(value)
-      ? "block":"none";
-  });
+document.getElementById('orderForm').addEventListener('submit',async function(e){
+e.preventDefault();
+
+const status=document.getElementById('status');
+const video=document.getElementById('video').value;
+const price=document.getElementById('price').value;
+const phone=document.getElementById('phone').value.trim();
+const trxid=document.getElementById('trxid').value.trim();
+
+if(!video){status.textContent='আগে একটি ভিডিও নির্বাচন করুন।';return;}
+
+status.textContent='অর্ডার পাঠানো হচ্ছে...';
+
+try{
+const response=await fetch('/api/order',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({video,price,phone,trxid})
+});
+const result=await response.json();
+
+if(response.ok && result.success){
+status.textContent='অর্ডার জমা হয়েছে। পেমেন্ট যাচাই করে জানানো হবে।';
+document.getElementById('orderForm').reset();
+document.getElementById('selected').textContent='অর্ডার জমা হয়েছে';
+}else{
+status.textContent=result.message || 'অর্ডার জমা হয়নি। আবার চেষ্টা করুন।';
+}
+}catch(error){
+status.textContent='সমস্যা হয়েছে। কিছুক্ষণ পর আবার চেষ্টা করুন।';
+}
 });
 </script>
-
 </body>
 </html>
