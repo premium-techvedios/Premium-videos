@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>আপনার Premium Video</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+    }
+    .box {
+      max-width: 650px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    video {
+      width: 100%;
+      border-radius: 8px;
+      background: black;
+    }
+    #message { color: #c62828; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>আপনার Premium Video</h2>
+    <p id="message">ভিডিও যাচাই করা হচ্ছে...</p>
+    <video id="player" controls playsinline hidden></video>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    const token = params.get("token");
+    const message = document.getElementById("message");
+    const player = document.getElementById("player");
+
+    if (!["1", "2", "3", "4"].includes(id) || !token) {
+      message.textContent = "ভিডিও দেখার সঠিক লিংক পাওয়া যায়নি।";
+    } else {
+      player.src =
+        "/api/stream?id=" + encodeURIComponent(id) +
+        "&token=" + encodeURIComponent(token);
+
+      player.onloadedmetadata = () => {
+        message.textContent = "আপনার ভিডিও প্রস্তুত।";
+        player.hidden = false;
+      };
+
+      player.onerror = () => {
+        message.textContent =
+          "ভিডিও চালানো যাচ্ছে না। লিংক বা অনুমতি যাচাই করুন।";
+      };
+
+      player.hidden = false;
+      message.textContent = "ভিডিও লোড হচ্ছে...";
+    }
+  </script>
+</body>
+</html>
