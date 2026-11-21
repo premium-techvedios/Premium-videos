@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    .box {
+      max-width: 420px;
+      margin: 40px auto;
+      padding: 22px;
+      background: white;
+      border-radius: 12px;
+    }
+    input, button {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 13px;
+      margin: 9px 0;
+      font-size: 16px;
+    }
+    button { background: #087d43; color: white; border: 0; }
+    #result { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Admin Panel</h2>
+    <input id="password" type="password" placeholder="Admin Password">
+    <input id="orderId" type="number" placeholder="Order ID">
+    <button onclick="approve()">Approve Order</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    async function approve() {
+      const result = document.getElementById("result");
+      result.textContent = "অপেক্ষা করুন...";
+
+      try {
+        const response = await fetch("/api/approve", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            password: document.getElementById("password").value,
+            orderId: document.getElementById("orderId").value
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          result.innerHTML =
+            "অর্ডার অনুমোদিত হয়েছে।<br><br>" +
+            '<a href="' + data.watchUrl +
+            '" target="_blank">ভিডিও লিংক খুলুন</a><br><br>' +
+            '<button id="copy">লিংক কপি করুন</button>';
+
+          document.getElementById("copy").onclick = async () => {
+            await navigator.clipboard.writeText(data.watchUrl);
+            result.textContent = "ভিডিও লিংক কপি হয়েছে: " + data.watchUrl;
+          };
+        } else {
+          result.textContent = data.message || "সমস্যা হয়েছে।";
+        }
+      } catch (error) {
+        result.textContent = "সার্ভারে যোগাযোগ করা যাচ্ছে না।";
+      }
+    }
+  </script>
+</body>
+</html>
